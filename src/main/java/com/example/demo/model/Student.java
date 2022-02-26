@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -20,9 +21,9 @@ public class Student {
     private String firstname;
     private String lastname;
     @Column(name = "personal_no")
-    private Integer personalNo;
+    private String personalNo;
     @Column (name = "email")
     private String  email;
     @Column (name = "birth_date")
-    private LocalDate birthDate;
+    private Date birthDate;
 }
