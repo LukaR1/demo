@@ -5,24 +5,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "student")
-@SequenceGenerator(name = "studentIdGenerator", sequenceName = "student_id_seq", allocationSize = 1)
-public class Student {
+@Table(name = "teachers")
+@SequenceGenerator(name = "teachersIdGenerator", sequenceName = "teachers_id_seq", allocationSize = 1)
+public class Teachers {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studentIdGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "teachersIdGenerator")
     private Integer id;
     private String firstname;
     private String lastname;
     @Column(name = "personal_no")
     private String personalNo;
-    @Column (name = "email")
     private String  email;
     @Column (name = "birth_date")
     private Date birthDate;
