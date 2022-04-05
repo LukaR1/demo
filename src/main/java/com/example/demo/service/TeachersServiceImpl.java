@@ -20,12 +20,12 @@ public class TeachersServiceImpl implements TeachersService{
 
 
     @Override
-    public Teachers addTeachers(Teachers teachers) {
+    public Teachers add(Teachers teachers) {
         return teachersRepository.save(teachers);
     }
 
     @Override
-    public List<Teachers> getTeachers(String Teachers) {
+    public List<Teachers> get(String Teachers) {
         return teachersRepository.findAll();
     }
 
@@ -35,12 +35,12 @@ public class TeachersServiceImpl implements TeachersService{
     }
 
     @Override
-    public void deleteTeachers(int id) throws Exception {
+    public void delete(int id) throws Exception {
         teachersRepository.delete(get(id));
     }
 
     @Override
-    public Teachers updateTeachers(Teachers teachers) throws Exception {
+    public Teachers update(Teachers teachers) throws Exception {
         get(teachers.getId());
         return teachersRepository.save(teachers);
     }

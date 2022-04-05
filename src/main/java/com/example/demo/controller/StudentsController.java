@@ -19,21 +19,21 @@ public class StudentsController {
     @GetMapping
     @Operation(tags = {"students"}, summary = "სტუდენტების სია")
     public List<Students> getStudents(String students) {
-        return studentsService.getStudents(students);
+        return studentsService.get(students);
     }
 
     @PostMapping
-    public ResponseEntity<Students> addStudents(@RequestBody Students students) {
-        Students Students = studentsService.addStudents(students);
+    public ResponseEntity<Students> add(@RequestBody Students students) {
+        Students Students = studentsService.add(students);
         return ResponseEntity.status(201).body(Students);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Students> updateStudents(@PathVariable int id,
+    public ResponseEntity<Students> update(@PathVariable int id,
                                                   @RequestBody Students students) {
         try {
             students.setId(id);
-            Students dbStudents = studentsService.updateStudents(students);
+            Students dbStudents = studentsService.update(students);
             return ResponseEntity.ok(dbStudents);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
@@ -41,9 +41,9 @@ public class StudentsController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteStudents(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         try {
-            studentsService.deleteStudents(id);
+            studentsService.delete(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

@@ -19,12 +19,12 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Override
-    public Students addStudents(Students students) {
+    public Students add(Students students) {
         return studentRepository.save(students);
     }
 
     @Override
-    public List<Students> getStudents(String Students) {
+    public List<Students> get(String Students) {
         return studentRepository.findAll();
     }
 
@@ -34,12 +34,12 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Override
-    public void deleteStudents(int id) throws Exception {
+    public void delete(int id) throws Exception {
         studentRepository.delete(get(id));
     }
 
     @Override
-    public Students updateStudents(Students students) throws Exception {
+    public Students update(Students students) throws Exception {
         get(students.getId());
         return studentRepository.save(students);
     }
