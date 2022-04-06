@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Groups;
-import com.example.demo.model.Students;
-import com.example.demo.model.Teachers;
 import com.example.demo.repository.GroupsRepository;
 import com.example.demo.repository.StudentsRepository;
 import com.example.demo.repository.TeachersRepository;
@@ -22,11 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GroupsController {
     private final GroupsService groupsService;
-
-
-    private final GroupsRepository groupsRepository;
-    private final StudentsRepository studentsRepository;
-    private final TeachersRepository teachersRepository;
 
     @GetMapping
     @Operation(tags = {"groups"}, summary = "ჯგუფების სია")
@@ -71,29 +64,30 @@ public class GroupsController {
         }
     }
 
-    @PutMapping("/{groupId}/students/{memberId}")
-    Groups enrollStudentsToGroups(
-            @PathVariable long groupId,
-            @PathVariable long memberId
-    ) {
-        Groups groups = groupsRepository.findById((int) groupId)
-                .orElseThrow(() -> new RuntimeException("ERROR"));
-        Students students = studentsRepository.findById((int) memberId)
-                .orElseThrow(() -> new RuntimeException("ERROR"));
-        groups.enrollStudents(students);
-        return groupsRepository.save(groups);
-    }
-
-    @PutMapping("/{groupId}/teachers/{teachersId}")
-    Groups assignTeachersToGroups(
-            @PathVariable long groupId,
-            @PathVariable long teachersId
-    ) {
-        Groups groups = groupsRepository.findById((int) groupId)
-                .orElseThrow(() -> new RuntimeException("ERROR"));
-        Teachers teachers = teachersRepository.findById((int) teachersId)
-                .orElseThrow(() -> new RuntimeException("ERROR"));
-        groups.assignTeachers(teachers);
-        return groupsRepository.save(groups);
-    }
 }
+//    @PutMapping("/{groupId}/students/{memberId}")
+//    Groups enrollStudentsToGroups(
+//            @PathVariable long groupId,
+//            @PathVariable long memberId
+//    ) {
+//        Groups groups = groupsRepository.findById((int) groupId)
+//                .orElseThrow(() -> new RuntimeException("ERROR"));
+//        Students students = studentsRepository.findById((int) memberId)
+//                .orElseThrow(() -> new RuntimeException("ERROR"));
+//        groups.enrollStudents(students);
+//        return groupsRepository.save(groups);
+//    }
+
+//    @PutMapping("/{groupId}/teachers/{teachersId}")
+//    Groups assignTeachersToGroups(
+//            @PathVariable long groupId,
+//            @PathVariable long teachersId
+//    ) {
+//        Groups groups = groupsRepository.findById((int) groupId)
+//                .orElseThrow(() -> new RuntimeException("ERROR"));
+//        Teachers teachers = teachersRepository.findById((int) teachersId)
+//                .orElseThrow(() -> new RuntimeException("ERROR"));
+//        groups.assignTeachers(teachers);
+//        return groupsRepository.save(groups);
+//    }
+

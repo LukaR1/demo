@@ -1,14 +1,13 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Setter
 @Getter
@@ -29,8 +28,4 @@ public class Students {
     @Column (name = "birth_date")
     private Date birthDate;
 
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "enrolledStudent")
-    private Set<Groups> groups = new HashSet<>();
 }

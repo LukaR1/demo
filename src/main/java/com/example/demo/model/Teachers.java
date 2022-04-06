@@ -29,7 +29,7 @@ public class Teachers {
     private Date birthDate;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "teachers")
-    private Set<Groups> groups = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "teachers")
+//    private Set<Groups> groups = new HashSet<>();
 }
