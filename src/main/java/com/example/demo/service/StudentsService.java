@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.StudentsController;
 import com.example.demo.model.*;
 
 
@@ -16,5 +17,7 @@ public interface StudentsService {
     void delete(int id) throws Exception;
 
     Students update(Students students) throws Exception;
+
+    List<Students> getStudents(StudentSearch params);
 }
 

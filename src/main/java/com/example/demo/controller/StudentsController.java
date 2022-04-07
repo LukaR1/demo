@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.StudentSearch;
 import com.example.demo.model.Students;
 import com.example.demo.service.StudentsService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,9 +17,10 @@ public class StudentsController {
     private final StudentsService studentsService;
 
 
+
     @GetMapping
     @Operation(tags = {"students"}, summary = "სტუდენტების სია")
-    public List<Students> getStudents(String students) {
+    public List<Students> get(String students) {
         return studentsService.get(students);
     }
 
@@ -57,5 +59,11 @@ public class StudentsController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/search")
+    @Operation(tags = "students", description = "სტუდენტის ძებნა")
+    public List<Students> getStudents(@RequestBody StudentSearch params){
+        return studentsService.getStudents(params);
     }
 }

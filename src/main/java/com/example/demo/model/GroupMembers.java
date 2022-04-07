@@ -18,6 +18,10 @@ public class GroupMembers {
         MALE,
         FEMALE
     }
+    enum Type{
+        STUDENT,
+        TEACHER
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groupMemberIdSeq")
@@ -28,12 +32,20 @@ public class GroupMembers {
     private Integer groupId;
     @Column(name = "gender")
     @Enumerated(EnumType.ORDINAL)
-    private Gender personType;
+    private Gender gender;
+    @Column(name = "type")
+    @Enumerated(EnumType.ORDINAL)
+    private Type type;
 
     @JsonBackReference
     @JoinColumn(name = "group_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(cascade = CascadeType.ALL)
-    private Students member;
+    private Students students;
+
+    @JsonBackReference
+    @JoinColumn(name = "group_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Teachers teachers;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "member_id",referencedColumnName = "id",insertable = false,updatable = false)

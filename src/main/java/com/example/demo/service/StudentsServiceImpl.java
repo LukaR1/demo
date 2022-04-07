@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.StudentsController;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.persistence.criteria.Predicate;
 import java.util.List;
 
 @Service
@@ -42,5 +45,19 @@ public class StudentsServiceImpl implements StudentsService {
     public Students update(Students students) throws Exception {
         get(students.getId());
         return studentRepository.save(students);
+    }
+
+    @Override
+    public List<Students> getStudents(StudentSearch params) {
+       return studentRepository.findAll(((root, query, criteriaBuilder) -> {
+           Predicate predicate = criteriaBuilder.conjunction();
+           if (StringUtils.isNotEmpty(params.getFirstName())){
+               predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("firstname"), params.getFirstName()));
+           }
+           if (params.getLastName() != null){
+               predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("lastname"),params.getLastName()));
+           }
+           return predicate;
+       }));
     }
 }

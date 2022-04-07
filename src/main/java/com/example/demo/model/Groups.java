@@ -25,12 +25,12 @@ public class Groups {
     @Column(name = "group_no")
     private String groupNo;
 
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "group")
-    private Set<GroupsTeachers> groupsTeachers;
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "member")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "students")
     private Set<GroupMembers> groupMembers;
 
+//    @JsonManagedReference
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "teacherGroup")
+//    private Set<Teachers> teacherGroup;
 }
