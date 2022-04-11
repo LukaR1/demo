@@ -27,10 +27,8 @@ public class Groups {
 
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "students")
-    private Set<GroupMembers> groupMembers;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "members")
+    private Set<GroupMembers> members;
 
-//    @JsonManagedReference
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "teacherGroup")
-//    private Set<Teachers> teacherGroup;
+
 }

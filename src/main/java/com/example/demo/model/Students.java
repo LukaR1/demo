@@ -1,12 +1,16 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -22,9 +26,16 @@ public class Students {
     private String lastname;
     @Column(name = "personal_no")
     private String personalNo;
-    @Column (name = "email")
-    private String  email;
-    @Column (name = "birth_date")
+    @Column(name = "email")
+    private String email;
+    @Column(name = "birth_date")
     private Date birthDate;
+
+
+
+    @JsonBackReference
+    @JoinColumn(name = "id", referencedColumnName = "member_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GroupMembers studentInfo;
 
 }

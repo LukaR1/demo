@@ -20,6 +20,4 @@ public class TeachersAndStudents {
     private Integer teacherId;
     @Column(name = "student_id")
     private Integer studentId;
-
-
 }

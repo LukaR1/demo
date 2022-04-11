@@ -1,10 +1,14 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -12,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "group_members")
 @SequenceGenerator(name = "groupMemberIdSeq", sequenceName = "group_member_id_seq", allocationSize = 1)
-public class GroupMembers {
+public class GroupMembers implements Serializable {
 
     enum Gender {
         MALE,
@@ -40,14 +44,19 @@ public class GroupMembers {
     @JsonBackReference
     @JoinColumn(name = "group_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(cascade = CascadeType.ALL)
-    private Students students;
+    private Groups members;
 
-    @JsonBackReference
-    @JoinColumn(name = "group_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Teachers teachers;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "teacherInfo")
+    private List<Teachers> teacherInfo;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "member_id",referencedColumnName = "id",insertable = false,updatable = false)
-//    private Students students;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "studentInfo")
+    private Set<Students> studentInfo;
+//
+//    @JsonManagedReference
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "teacherInfo")
+//    private Set<Teachers> teacherInfo;
+
 }

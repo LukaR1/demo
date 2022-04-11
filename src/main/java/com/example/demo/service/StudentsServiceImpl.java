@@ -49,13 +49,19 @@ public class StudentsServiceImpl implements StudentsService {
 
     @Override
     public List<Students> getStudents(StudentSearch params) {
-       return studentRepository.findAll(((root, query, criteriaBuilder) -> {
-           Predicate predicate = criteriaBuilder.conjunction();
+       return studentRepository.findAll(((root, query, cb) -> {
+           Predicate predicate = cb.conjunction();
            if (StringUtils.isNotEmpty(params.getFirstName())){
-               predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("firstname"), params.getFirstName()));
+               predicate = cb.and(predicate, cb.equal(root.get("firstname"), params.getFirstName()));
            }
            if (params.getLastName() != null){
-               predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("lastname"),params.getLastName()));
+               predicate = cb.and(predicate, cb.equal(root.get("lastname"),params.getLastName()));
+           }
+           if (params.getBirthDateFrom() !=null) {
+               predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get("birthDate"), params.getBirthDateFrom()));
+           }
+           if (params.getBirthDateTo() !=null){
+               predicate = cb.and(predicate, cb.lessThanOrEqualTo(root.get("birthDate"), params.getBirthDateTo()));
            }
            return predicate;
        }));
