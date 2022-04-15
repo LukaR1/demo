@@ -54,9 +54,5 @@ public class GroupMembers implements Serializable {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "studentInfo")
     private Set<Students> studentInfo;
-//
-//    @JsonManagedReference
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "teacherInfo")
-//    private Set<Teachers> teacherInfo;
 
 }

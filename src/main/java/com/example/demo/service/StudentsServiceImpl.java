@@ -52,7 +52,7 @@ public class StudentsServiceImpl implements StudentsService {
        return studentRepository.findAll(((root, query, cb) -> {
            Predicate predicate = cb.conjunction();
            if (StringUtils.isNotEmpty(params.getFirstName())){
-               predicate = cb.and(predicate, cb.equal(root.get("firstname"), params.getFirstName()));
+               predicate = cb.and(predicate, cb.like(root.get("firstname"), params.getFirstName()+"%"));
            }
            if (params.getLastName() != null){
                predicate = cb.and(predicate, cb.equal(root.get("lastname"),params.getLastName()));
