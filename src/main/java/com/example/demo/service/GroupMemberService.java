@@ -5,7 +5,6 @@ import com.example.demo.model.GroupMembers;
 
 import java.util.List;
 
-
 public interface GroupMemberService {
 
     GroupMembers add(GroupMembers groupMembers);

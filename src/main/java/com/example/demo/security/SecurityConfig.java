@@ -1,6 +1,5 @@
 package com.example.demo.security;
 
-import com.example.demo.domains.UserRole;
 import com.example.demo.model.Users;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.UserRoleRepository;

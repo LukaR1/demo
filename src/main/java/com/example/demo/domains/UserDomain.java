@@ -1,8 +1,5 @@
 package com.example.demo.domains;
 
-
-import com.example.demo.model.GroupMembers;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +8,7 @@ import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+
 
 @Getter
 @Setter
